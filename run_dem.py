@@ -249,6 +249,26 @@ def train(args=get_args()):
         lr_scheduler=lr_scheduler,
     )
 
+    """
+    FIXME: 总的来说这个实验的流程大概是
+    offline-rl: train dynamic1, train policy1 (phase 1) -> online-rl: train dynamic2, train policy2 (phase 2)
+    其实这两个 dynamic 和 policy 可以没有关联（代码里 policy2 是继承 policy1 的权重，但也可以重新训练），
+    只是 online-rl 的部分需要 offline-rl 的 policy1 进行在线训练，而 policy 的训练又是依靠 dynamic model 的。
+
+    一开始实验的时候 phase 1 和 phase 2 是分开执行的（为了节省时间以及方便调试），
+    在 phase 2 阶段导入了需要的 dynamic1 和 policy1 。
+
+    现在的问题的是：整合代码的表现与分开实验不一致。
+
+    思考方向：
+    phase 1 应该是没有问题的, 因为基本没有做出改动，并且是 phase 1 基本是 MOPO 算法的流程。
+    我的工作基本是在 phase 2 的 online interaction (train dynamic2) 部分，其实提升不大。
+    所以主要还是看 phase 1, 我有查看实验的日志，有问题的实验在 phase 1 阶段就不太好，但日志方面的处理不知道是否正确。
+
+    描述的不是很好，有些类型没有补上，抱歉。
+    """
+
+    """ phase 1 """
     # train dynamics
     if not load_dynamics_model:
         dynamics.train(real_buffer.sample_all(), logger, max_epochs_since_update=5)
@@ -256,6 +276,7 @@ def train(args=get_args()):
     # train policy offline
     policy_trainer.train()
 
+    """ phase 2 """
     # save offline policy
     saved_actor = deepcopy(actor)
     saved_critic1 = deepcopy(critic1)
