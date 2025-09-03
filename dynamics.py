@@ -29,7 +29,6 @@ class EnsembleDynamics(object):
     def step(
         self, obs: np.ndarray, action: np.ndarray, pred: bool = True
     ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, Dict]:
-        "imagine single forward step"
         obs_act = np.concatenate([obs, action], axis=-1)
         obs_act = self.scaler.transform(obs_act)
         mean, logvar = self.model(obs_act)

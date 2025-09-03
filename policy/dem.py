@@ -112,7 +112,8 @@ class DEMPolicy(SACPolicy):
                 while t.n < t.total:
                     kappa = 1 / (1 + np.exp(c * (epoch * online_batch_size + t.n - t0)))
                     short_rollout = defaultdict(list)
-                    if t.n % 200 == 0:  # 每 200 轮更新一次候选池
+                    # update the candidate pool every 200 round
+                    if t.n % 200 == 0:
                         high_uncertainty_pool = {}
                         sampled_states, sampled_actions, _, _, _ = (
                             self.real_buffer.sample(10000).values()

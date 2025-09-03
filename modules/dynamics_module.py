@@ -20,7 +20,7 @@ def soft_clamp(
     _min: Optional[torch.Tensor] = None,
     _max: Optional[torch.Tensor] = None,
 ) -> torch.Tensor:
-    # clamp tensor values while mataining the gradient
+    # clamp tensor values while maintaining the gradient
     if _max is not None:
         x = _max - F.softplus(_max - x)
     if _min is not None:

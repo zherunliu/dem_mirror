@@ -122,7 +122,7 @@ class ReplayBuffer:
         }
 
     def clear(self) -> None:
-        """清空buffer内容和指针"""
+        """clear the buffer content and pointer"""
         self._ptr = 0
         self._size = 0
         self.observations.fill(0)
