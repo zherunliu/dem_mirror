@@ -2,7 +2,7 @@ import os
 import numpy as np
 import torch
 import torch.nn as nn
-from typing import Callable, List, Tuple, Dict, Optional
+from typing import Callable, List, Tuple, Dict, Optional, Union
 from utils.scaler import StandardScaler
 from utils.logger import Logger
 
@@ -28,7 +28,7 @@ class EnsembleDynamics(object):
     @torch.no_grad()
     def step(
         self, obs: np.ndarray, action: np.ndarray, pred: bool = True
-    ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, Dict]:
+    ) -> Union[Tuple[np.ndarray, np.ndarray, np.ndarray, Dict], np.ndarray]:
         obs_act = np.concatenate([obs, action], axis=-1)
         obs_act = self.scaler.transform(obs_act)
         mean, logvar = self.model(obs_act)
@@ -241,9 +241,9 @@ class EnsembleDynamics(object):
     @torch.no_grad()
     def validate(self, inputs: np.ndarray, targets: np.ndarray) -> List[float]:
         self.model.eval()
-        targets = torch.as_tensor(targets).to(self.model.device)
+        output = torch.as_tensor(targets).to(self.model.device)
         mean, _ = self.model(inputs)
-        loss = ((mean - targets) ** 2).mean(dim=(1, 2))
+        loss = ((mean - output) ** 2).mean(dim=(1, 2))
         val_loss = list(loss.cpu().numpy())
         return val_loss
 

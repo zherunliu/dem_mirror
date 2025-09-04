@@ -24,7 +24,7 @@ class DEMPolicy(SACPolicy):
         critic1_optim: torch.optim.Optimizer,
         critic2_optim: torch.optim.Optimizer,
         env: gym.Env,
-        task: "hopper-medium-replay-v2",
+        task: str,
         real_buffer: ReplayBuffer,
         logger: Logger,
         tau: float = 0.005,

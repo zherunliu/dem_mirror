@@ -50,12 +50,13 @@ class EnsembleDynamicsModel(nn.Module):
 
         self.activation = activation()
 
-        assert len(weight_decays) == (len(hidden_dims) + 1)
-
-        module_list = []
         hidden_dims = [obs_dim + action_dim] + list(hidden_dims)
         if weight_decays is None:
             weight_decays = [0.0] * (len(hidden_dims) + 1)
+        else:
+            assert len(weight_decays) == (len(hidden_dims) + 1)
+
+        module_list = []
         for in_dim, out_dim, weight_decay in zip(
             hidden_dims[:-1], hidden_dims[1:], weight_decays[:-1]
         ):
@@ -94,8 +95,7 @@ class EnsembleDynamicsModel(nn.Module):
         self.to(self.device)
 
     def forward(self, obs_action: np.ndarray) -> Tuple[torch.Tensor, torch.Tensor]:
-        obs_action = torch.as_tensor(obs_action, dtype=torch.float32).to(self.device)
-        output = obs_action
+        output = torch.as_tensor(obs_action, dtype=torch.float32).to(self.device)
         for layer in self.backbones:
             output = self.activation(layer(output))
         mean, logvar = torch.chunk(self.output_layer(output), 2, dim=-1)
