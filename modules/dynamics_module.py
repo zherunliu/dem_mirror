@@ -50,13 +50,13 @@ class EnsembleDynamicsModel(nn.Module):
 
         self.activation = activation()
 
+        assert len(weight_decays) == (len(hidden_dims) + 1)
+        module_list = []
+
         hidden_dims = [obs_dim + action_dim] + list(hidden_dims)
         if weight_decays is None:
             weight_decays = [0.0] * (len(hidden_dims) + 1)
-        else:
-            assert len(weight_decays) == (len(hidden_dims) + 1)
 
-        module_list = []
         for in_dim, out_dim, weight_decay in zip(
             hidden_dims[:-1], hidden_dims[1:], weight_decays[:-1]
         ):

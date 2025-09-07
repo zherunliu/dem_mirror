@@ -19,15 +19,15 @@ from copy import deepcopy
 """
 suggested hypers
 
-halfcheetah-medium-v2: rollout-length=5, penalty-coef=0.5  300
-hopper-medium-v2: rollout-length=5, penalty-coef=5.0  300
-walker2d-medium-v2: rollout-length=5, penalty-coef=0.5  100
-halfcheetah-medium-replay-v2: rollout-length=5, penalty-coef=0.5  200
-hopper-medium-replay-v2: rollout-length=5, penalty-coef=2.5  300
-walker2d-medium-replay-v2: rollout-length=1, penalty-coef=2.5  20
-halfcheetah-medium-expert-v2: rollout-length=5, penalty-coef=2.5  300
-hopper-medium-expert-v2: rollout-length=5, penalty-coef=5.0  300
-walker2d-medium-expert-v2: rollout-length=1, penalty-coef=2.5  200
+python run_dem.py --task halfcheetah-medium-v2 --rollout-length 5  --penalty-coef 0.5 --kappa-ori 300
+python run_dem.py --task hopper-medium-v2 --rollout-length 5  --penalty-coef 5.0 --kappa-ori 300
+python run_dem.py --task walker2d-medium-v2 --rollout-length 5  --penalty-coef 0.5 --kappa-ori 100
+python run_dem.py --task halfcheetah-medium-replay-v2 --rollout-length 5  --penalty-coef 0.5 --kappa-ori 200
+python run_dem.py --task hopper-medium-replay-v2 --rollout-length 5  --penalty-coef 2.5 --kappa-ori 300
+python run_dem.py --task walker2d-medium-replay-v2 --rollout-length 1  --penalty-coef 2.5 --kappa-ori 20
+python run_dem.py --task halfcheetah-medium-expert-v2 --rollout-length 5  --penalty-coef 2.5 --kappa-ori 300
+python run_dem.py --task hopper-medium-expert-v2 --rollout-length 5  --penalty-coef 5.0 --kappa-ori 300
+python run_dem.py --task walker2d-medium-expert-v2 --rollout-length 1  --penalty-coef 2.5 --kappa-ori 200
 """
 
 
