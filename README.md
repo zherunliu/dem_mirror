@@ -7,21 +7,26 @@ Paper results were collected with [MuJoCo 2.1.0](http://www.mujoco.org/) (and [m
 Run it by:
 
 ```shell
+sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libboost-all-dev
+
 git clone https://github.com/zherunliu/DEM.git
 
 conda create --prefix .venv python=3.9 -y
 conda activate .venv
 
+wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
+tar -xzf ./mujoco210-linux-x86_64.tar.gz
+mv ./mujoco210 ~/.mujoco/mujoco210
+
+# Add next 3 lines to ~/.bashrc
+export CC=gcc
+export CXX=g++
+export LD_LIBRARY_PATH=$HOME/.mujoco/mujoco210/bin
+
+source ~/.bashrc
+
 pip install -r ./requirements.txt
 pip install git+https://github.com/Farama-Foundation/d4rl@master#egg=d4rl
 
-wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
-tar -xzf ./mujoco210-linux-x86_64.tar.gz
-rm -rf ~/.mujoco && mkdir ~/.mujoco
-mv ./mujoco210 ~/.mujoco/mujoco210
-
-# Add next line to ~/.bashrc
-export LD_LIBRARY_PATH=$HOME/.mujoco/mujoco210/bin
-
-python run_dem.py
+LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python run_dem.py
 ```
