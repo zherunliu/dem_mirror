@@ -1,0 +1,7 @@
+mujoco==2.1.2
+mujoco-py==2.1.2.14
+gym==0.23.1
+patchelf==0.17.2.4
+tensorboard==2.20.0
+torch==2.0.1
+numpy==1.26.4
