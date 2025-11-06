@@ -9,7 +9,8 @@ Run it by:
 ```shell
 sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libboost-all-dev
 
-git clone https://github.com/zherunliu/DEM.git
+- git clone https://github.com/zherunliu/DEM.git
++ git clone git@github.com:zherunliu/dem_mirror.git
 
 conda create --prefix .venv python=3.9 -y
 conda activate .venv
@@ -18,12 +19,18 @@ wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
 tar -xzf ./mujoco210-linux-x86_64.tar.gz
 mv ./mujoco210 ~/.mujoco/mujoco210
 
-# Add next 3 lines to ~/.bashrc
+- # Add next 3 lines to ~/.bashrc
++ # Add next 3 lines to ~/.zshrc
+
+- # vim ~/.bashrc
++ # vim ~/.zshrc
+
 export CC=gcc
 export CXX=g++
 export LD_LIBRARY_PATH=$HOME/.mujoco/mujoco210/bin
 
-source ~/.bashrc
+- source ~/.bashrc
++ source ~/.zshrc
 
 pip install -r ./requirements.txt
 pip install git+https://github.com/Farama-Foundation/d4rl@master#egg=d4rl
