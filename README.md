@@ -14,8 +14,8 @@ sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libboost-all-dev
 
 cd ./dem_mirror
 
-conda create --prefix .venv python=3.9 -y
-conda activate .venv
+conda create --prefix ./.venv python=3.9 -y
+conda activate ./.venv
 
 wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
 tar -xzf ./mujoco210-linux-x86_64.tar.gz
