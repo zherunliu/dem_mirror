@@ -30,10 +30,7 @@ export CC=gcc
 export CXX=g++
 export LD_LIBRARY_PATH=$HOME/.mujoco/mujoco210/bin
 
-- source ~/.bashrc
-+ source ~/.zshrc
-
-+ git checkout tc28/chore
+source ~/.bashrc
 
 pip install -r ./requirements.txt
 pip install git+https://github.com/Farama-Foundation/d4rl@master#egg=d4rl
