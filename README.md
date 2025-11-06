@@ -19,6 +19,7 @@ conda activate ./.venv
 
 wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
 tar -xzf ./mujoco210-linux-x86_64.tar.gz
+mkdir -p ~/.mujoco
 mv ./mujoco210 ~/.mujoco/mujoco210
 
 - # Add next 3 lines to ~/.bashrc
