@@ -7,7 +7,7 @@ Paper results were collected with [MuJoCo 2.1.0](http://www.mujoco.org/) (and [m
 Run it by:
 
 ```shell
-sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libboost-all-dev
+sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libboost-all-dev libomp-dev
 
 - git clone https://github.com/zherunliu/DEM.git
 + git clone git@github.com:zherunliu/dem_mirror.git
