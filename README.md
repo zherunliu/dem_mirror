@@ -60,5 +60,7 @@ Amend ./.venv/lib/python3.9/site-packages/mujoco_py/cymj.pyx **line 104**
 ## Download dataset (optional)
 
 ```bash
-scp -P 45352 ./halfcheetah_medium_replay-v2.hdf5 root@i-1.gpushare.com:/root/.d4rl/datasets/halfcheetah_medium_replay-v2.hdf5
+curl http://rail.eecs.berkeley.edu/datasets/offline_rl/gym_mujoco_v2/halfcheetah_medium_replay-v2.hdf5 -O halfcheetah_medium_replay-v2.hdf5
+
+scp -P 45352 ./halfcheetah_medium_replay-v2.hdf5 <user>@<host>:~/.d4rl/datasets/halfcheetah_medium_replay-v2.hdf5
 ```
