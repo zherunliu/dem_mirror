@@ -41,6 +41,8 @@ pip install git+https://github.com/Farama-Foundation/d4rl@master#egg=d4rl
 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python ./run_dem.py
 ```
 
+## Amend mujoco
+
 Amend ./.venv/lib/python3.9/site-packages/mujoco_py/cymj.pyx **line 67**
 
 ```pyx
@@ -55,3 +57,8 @@ Amend ./.venv/lib/python3.9/site-packages/mujoco_py/cymj.pyx **line 104**
 + cdef void c_error_callback(const char *msg) noexcept with gil:
 ```
 
+## Download dataset (optional)
+
+```bash
+scp -P 45352 ./halfcheetah_medium_replay-v2.hdf5 root@i-1.gpushare.com:/root/.d4rl/datasets/halfcheetah_medium_replay-v2.hdf5
+```
