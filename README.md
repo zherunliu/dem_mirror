@@ -12,7 +12,8 @@ sudo apt install libosmesa6-dev libgl1-mesa-glx libglfw3 libboost-all-dev libomp
 - git clone https://github.com/zherunliu/DEM.git
 + git clone git@github.com:zherunliu/dem_mirror.git
 
-cd ./dem_mirror
+- cd ./DEM
++ cd ./dem_mirror
 
 conda create --prefix ./.venv python=3.9 -y
 conda activate ./.venv
@@ -35,10 +36,10 @@ export LD_LIBRARY_PATH=$HOME/.mujoco/mujoco210/bin
 - source ~/.bashrc
 + source ~/.zshrc
 
-git checkout tc28/chore
++ git checkout tc28/chore
 
 pip install -r ./requirements.txt
 pip install git+https://github.com/Farama-Foundation/d4rl@master#egg=d4rl
 
-LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python run_dem.py
+LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python ./run_dem.py
 ```
