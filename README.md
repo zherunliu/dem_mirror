@@ -23,11 +23,8 @@ tar -xzf ./mujoco210-linux-x86_64.tar.gz
 mkdir -p ~/.mujoco
 mv ./mujoco210 ~/.mujoco/mujoco210
 
-- # Add next 3 lines to ~/.bashrc
-+ # Add next 3 lines to ~/.zshrc
-
-- # vim ~/.bashrc
-+ # vim ~/.zshrc
+# Add next 3 lines to ~/.bashrc
+# vim ~/.bashrc
 
 export CC=gcc
 export CXX=g++
@@ -43,3 +40,18 @@ pip install git+https://github.com/Farama-Foundation/d4rl@master#egg=d4rl
 
 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python ./run_dem.py
 ```
+
+Amend ./.venv/lib/python3.9/site-packages/mujoco_py/cymj.pyx **line 67**
+
+```pyx
+- cdef void c_warning_callback(const char *msg) with gil:
++ cdef void c_warning_callback(const char *msg) noexcept with gil:
+```
+
+Amend ./.venv/lib/python3.9/site-packages/mujoco_py/cymj.pyx **line 104**
+
+```pyx
+- cdef void c_error_callback(const char *msg) with gil:
++ cdef void c_error_callback(const char *msg) noexcept with gil:
+```
+
